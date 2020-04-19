@@ -102,7 +102,7 @@ if [ "${DEVELOPERMODE}" -ne 0 ]; then
     GITHUB_PREFIX=git@github.com:
 fi
 
-if [ -z "${PARTIAL}" ]; then
+if [ ! -z "${PARTIAL}" ]; then
     echo "only executing ${PARTIAL}"
 fi
 
