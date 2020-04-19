@@ -3,7 +3,9 @@
 set -e # stop on error
 
 DOCKERIMAGE=carjay/raspberrypi:busterdev-neutrino
-DOCKERWORKDIR=/home/docker/sources
+DOCKERWORKDIR=${PWD} # path inside the container, must be the same path as the external one,
+                     # else the binaries will not run out of the prefix
+                     # because they would have the wrong absolute path embedded
 GITHUB_PREFIX=https://github.com/
 DEVELOPERMODE=0
 PARTIAL=""
