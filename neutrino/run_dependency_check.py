@@ -47,9 +47,9 @@ def main():
                     found = True
             if not found:
                 missing.append(pkg_alternatives[0]) # just use the first alternative
-
     except Exception as exc:
         print("ERROR: Unable to check installed packages: %s" % str(exc))
+        return 1
 
     if missing:
         print("%d package%s still need%s to be installed:" % (len(missing), ['','s'][len(missing)>1], ['s',''][len(missing)>1]))
