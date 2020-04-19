@@ -173,7 +173,9 @@ if [ -z "${PARTIAL}" ] || [ "${PARTIAL}" == "libstb-hal-configure" ]; then
     echo "Configuring libstb-hal"
     dockerexec "${PWD}" "cd ${DOCKERWORKDIR}/libstb-hal && \
                             ./autogen.sh && \
-                            ./configure --prefix=${PREFIXDIR}"
+                            ./configure --prefix=${PREFIXDIR} \
+                            --with-boxtype=generic \
+                            --with-boxmodel=raspi"
 fi
 if [ -z "${PARTIAL}" ] || [ "${PARTIAL}" == "libstb-hal-build" ]; then
     echo "Building libstb-hal"
