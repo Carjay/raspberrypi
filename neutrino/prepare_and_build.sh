@@ -122,7 +122,7 @@ if [ -z "${PARTIAL}" ] || [ "${PARTIAL}" == "clone" ]; then
 
     if [ ! -e libstb-hal ]; then
         echo "    Checking out libstb-hal"
-        git clone ${GITHUB_PREFIX}neutrino-mp/libstb-hal.git
+        git clone ${GITHUB_PREFIX}Carjay/libstb-hal.git
     else
         echo "    libstb-hal directory exists, skipping"
     fi
