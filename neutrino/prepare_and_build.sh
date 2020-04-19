@@ -96,39 +96,42 @@ STARTTIME=$(date +%s)
 
 if [ ${SKIP_PULL} -ne 1 ]; then
     # make sure we have the latest image
+    echo "Checking if local docker image is up-to-date"
     docker pull carjay/raspberrypi:busterdev-neutrino
+    echo
 fi
 
 if [ "${DEVELOPERMODE}" -ne 0 ]; then
-    echo "developer mode, using SSH instead of HTTPS"
+    echo "Developer mod e, using SSH instead of HTTPS"
     GITHUB_PREFIX=git@github.com:
 fi
 
 if [ ! -z "${PARTIAL}" ]; then
-    echo "only executing ${PARTIAL}"
+    echo "As requested, only running target ${PARTIAL}"
+    echo
 fi
 
 if [ -z "${PARTIAL}" ] || [ "${PARTIAL}" == "clone" ]; then
-    echo "Checking out needed repositories"
+    echo "Cloning needed repositories if necessary."
     if [ ! -e library-dvbsi ]; then
-        echo "checking out library-dvbsi"
+        echo "    Checking out library-dvbsi"
         git clone ${GITHUB_PREFIX}tuxbox-neutrino/library-dvbsi.git
     else
-        echo "library-dvbsi directory exists, skipping"
+        echo "    library-dvbsi directory exists, skipping"
     fi
 
     if [ ! -e libstb-hal ]; then
-        echo "checking out libstb-hal"
+        echo "    Checking out libstb-hal"
         git clone ${GITHUB_PREFIX}neutrino-mp/libstb-hal.git
     else
-        echo "libstb-hal directory exists, skipping"
+        echo "    libstb-hal directory exists, skipping"
     fi
 
     if [ ! -e neutrino-mp ]; then
-        echo "checking out neutrino-mp"
+        echo "    Checking out neutrino-mp"
         git clone ${GITHUB_PREFIX}Carjay/neutrino-mp.git
     else
-        echo "neutrino-mp directory exists, skipping"
+        echo "    neutrino-mp directory exists, skipping"
     fi
 fi
 
@@ -203,4 +206,11 @@ fi
 # some stats
 FINISHTIME=$(date +%s)
 DIFF=$((${FINISHTIME}-${STARTTIME}))
+echo
 echo "Finished, took ${DIFF}s"
+
+if [ -z "${PARTIAL}" ] || [ "${PARTIAL}" == "neutrino-build" ]; then
+    echo
+    echo "Neutrino can be found at ${PREFIXDIR}/bin/neutrino"
+    echo "You may want to run the run_dependency_check.py script to make sure you have all dependencies installed"
+fi
