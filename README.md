@@ -1,7 +1,7 @@
 # raspberrypi
 Things related to the raspberrypi
 
-The ```docker``` directory contains a Dockerfile suitable for developing on the Pi. The image is located on dockerhub and can be pulled from carjay/raspberry:busterdev.
+The ```docker``` directory contains a Dockerfile suitable for developing on the Pi. The image is located on dockerhub and can be pulled from carjay/raspberrypi:busterdev.
 
 ## Install docker on the Pi
 The first step is to install docker on the Pi. This is actually quite simple, just use apt:

@@ -2,7 +2,8 @@
 
 echo "INFO: setting up and building test in container"
 
-docker run -it --rm -v ${PWD}:/home/docker/sources carjay/raspberry:busterdev bash -c \
+docker pull carjay/raspberrypi:busterdev-neutrino
+docker run -it --rm -v ${PWD}:/home/docker/sources carjay/raspberrypi:busterdev-neutrino bash -c \
         'cd /home/docker/sources && cmake -G "Unix Makefiles" -B build . && \
          cd build && make && \
          cd .. && ln -sf build/helloworld-gstreamer'
