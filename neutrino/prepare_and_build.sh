@@ -63,7 +63,6 @@ if [ $# -gt 0 ]; then
                 echo "                     since the docker container is limited to the current working directory."
                 echo "       -c, --cores: set the number of processor cores to use, default is to calculate the number automatically"
                 echo "       -t, --target: only execute a single target of the script, use one of:"
-                echo "       --no-pull: skip pulling the image from the registry (speeds things up a bit but image must be present locally)."
                 echo "           clone:                clone all repositories"
                 echo
                 echo "           dvbsi-configure:      configure dvbsi"
@@ -73,6 +72,7 @@ if [ $# -gt 0 ]; then
                 echo "           dvbsi-build:          build (and install) dvbsi"
                 echo "           libstb-hal-build:     build (and install) libstb-hal"
                 echo "           neutrino-build:       build (and install) neutrino"
+                echo "       --no-pull: skip pulling the image from the registry (speeds things up a bit but image must be present locally)."
                 echo
 
                 exit ${EXITSTATUS}
@@ -102,7 +102,7 @@ if [ ${SKIP_PULL} -ne 1 ]; then
 fi
 
 if [ "${DEVELOPERMODE}" -ne 0 ]; then
-    echo "Developer mod e, using SSH instead of HTTPS"
+    echo "Developer mode, using SSH instead of HTTPS"
     GITHUB_PREFIX=git@github.com:
 fi
 
